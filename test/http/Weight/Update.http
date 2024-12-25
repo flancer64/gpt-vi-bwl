@@ -1,0 +1,10 @@
+### HTTP Test for Weight Update API
+POST {{server}}/web-api-service/Vi_Bwl_Shared_Web_Api_Weight_Update
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "userCode": "vi",
+  "date": "2024-01-01",
+  "weight": 75.4
+}

@@ -1,0 +1,125 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Weight Update API",
+    "description": "An API to update weight records for a specific date.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://vi.user.wiredgeese.com/"
+    }
+  ],
+  "paths": {
+    "/web-api-service/Vi_Bwl_Shared_Web_Api_Weight_Update": {
+      "post": {
+        "summary": "Update weight record",
+        "description": "Allows users to submit or update their weight for a specific date. The request must include a valid user code, date, and weight value.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "weightUpdate",
+        "requestBody": {
+          "description": "Data required to update a weight record.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userCode": {
+                    "type": "string",
+                    "description": "The unique user code identifying the weight record.",
+                    "example": "user123"
+                  },
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "The date for the weight record.",
+                    "example": "2024-01-01"
+                  },
+                  "weight": {
+                    "type": "number",
+                    "description": "The weight value to record, in kilograms.",
+                    "example": 55.0
+                  }
+                },
+                "required": ["userCode", "date", "weight"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The weight record was updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCode": {
+                      "type": "string",
+                      "enum": ["SUCCESS", "SERVER_ERROR"],
+                      "description": "Indicates the result of the operation.",
+                      "example": "SUCCESS"
+                    },
+                    "instructions": {
+                      "type": "string",
+                      "description": "A message describing the result of the operation.",
+                      "example": "The weight record for 2024-01-01 has been updated successfully. Graphs can be viewed under the user named Be."
+                    }
+                  },
+                  "required": ["resultCode", "instructions"]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The request is forbidden due to missing or invalid Bearer token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Authorization failed: Bearer token is missing or invalid.",
+                      "example": "Authorization failed: Bearer token is missing or invalid."
+                    }
+                  },
+                  "required": ["message"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected server error occurred while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "instructions": {
+                      "type": "string",
+                      "description": "A message indicating that an error occurred during the operation.",
+                      "example": "An unexpected server error occurred. Please try again later."
+                    },
+                    "resultCode": {
+                      "type": "string",
+                      "enum": ["SERVER_ERROR"],
+                      "description": "Indicates that a server error occurred.",
+                      "example": "SERVER_ERROR"
+                    }
+                  },
+                  "required": ["instructions", "resultCode"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+!/var/.gitkeep
+/**/node_modules/
+/**/own_modules/
+/**/package-lock.json
+/**/tmp/
+/.idea/
+/.vscode/
+/cfg/local.*
+/http-client.env.json
+/test/data/*
+/var/*

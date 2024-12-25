@@ -1,0 +1,30 @@
+{
+  "name": "@flancer64/gpt-vi-bwl",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A custom GPT-powered web application integrated with the BWL system for user weight monitoring.",
+  "homepage": "https://github.com/flancer64/gpt-vi-bwl/",
+  "bugs": {
+    "url": "https://github.com/flancer64/gpt-vi-bwl/issues",
+    "email": "alex@flancer64.com"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Alex Gusev",
+    "email": "alex@flancer64.com",
+    "url": "https://github.com/flancer64"
+  },
+  "repository": "github:flancer64/gpt-vi-bwl",
+  "scripts": {
+    "help": "node ./bin/tequila.mjs -h",
+    "start": "node ./bin/tequila.mjs web-server-start",
+    "stop": "node ./bin/tequila.mjs web-server-stop",
+    "version": "node ./bin/tequila.mjs core-version"
+  },
+  "dependencies": {
+    "@teqfw/db": ">=0.22.1 <1.0.0",
+    "@teqfw/web-api": ">=0.21.0 <1.0.0",
+    "mysql2": "*",
+    "pg": "*"
+  }
+}

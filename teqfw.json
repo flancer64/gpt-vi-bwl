@@ -1,0 +1,13 @@
+{
+  "@teqfw/di": {
+    "autoload": {
+      "ns": "Vi_Bwl",
+      "path": "./src"
+    }
+  },
+  "@teqfw/web-api": {
+    "services": [
+      "Vi_Bwl_Back_Web_Api_Weight_Update"
+    ]
+  }
+}
