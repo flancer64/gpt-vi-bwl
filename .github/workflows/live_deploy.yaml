@@ -1,0 +1,51 @@
+name: LIVE - update and restart the `gpt-vi-bwl` app
+
+# start action manually
+on: workflow_dispatch
+
+env:
+  SERVICE: gpt-vi-bwl.service # the name of the service to manage
+  APP_DIR: /home/${{ secrets.USER }}/inst/gpt/vi-bwl/prod # directory of the application
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Stop the service
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo systemctl stop ${{ env.SERVICE }}
+
+      - name: Pull latest code from GitHub
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ env.APP_DIR }}
+            git pull origin main
+
+      - name: Run npm update
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ env.APP_DIR }}
+            npm update
+
+      - name: Start the service
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo systemctl start ${{ env.SERVICE }}
