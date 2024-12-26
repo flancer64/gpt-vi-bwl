@@ -7,15 +7,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #1a1a1a; /* Темный фон */
-            color: #e1e1e1; /* Светлый текст */
+            background-color: #1a1a1a;
+            color: #e1e1e1;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         header {
@@ -25,7 +25,7 @@
 
         header h1 {
             font-size: 2em;
-            color: #10a37f; /* Светло-зеленый акцент */
+            color: #10a37f;
         }
 
         header p {
@@ -38,8 +38,8 @@
 
         .links a {
             text-decoration: none;
-            color: #ffffff; /* Белый текст */
-            background-color: #10a37f; /* Светло-зеленый акцент */
+            color: #ffffff;
+            background-color: #10a37f;
             padding: 10px 20px;
             border-radius: 5px;
             margin: 5px;
@@ -48,7 +48,23 @@
         }
 
         .links a:hover {
-            background-color: #0e8e6f; /* Темнее при наведении */
+            background-color: #0e8e6f;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        footer a {
+            color: #10a37f;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -62,5 +78,9 @@
     <a href="https://chatgpt.com/g/g-676c272f6334819191bc37a35960f27d-weight-assistant" target="_blank">GPT-чат</a>
     <a href="https://bwl.wiredgeese.com/pub/#/" target="_blank">Приложение BWL</a>
 </div>
+<footer>
+    <p><a href="policy.html">Политика конфиденциальности</a></p>
+    <p>&copy; 2024 SIA "F. Lancer"</p>
+</footer>
 </body>
 </html>
